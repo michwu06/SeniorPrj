@@ -9,11 +9,11 @@ const String urlEvent = 'https://api-dev.levelapp.saveondev.com/events';
 const String urlClip = 'https://api-dev.levelapp.saveondev.com/clips';
 
 class UploadApi {
+  // first create event
   Future<int> createEvent(String bodyMessage) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     //Map<String, dynamic> data = new Map<String, dynamic>();
 
-    // i dont understand how the inning.dart works
 
     // temporary test
 
@@ -31,7 +31,7 @@ class UploadApi {
       print('\nbody:' + response.body);
 
       if (convertData != null) {
-        // im not sure which one im supposed to grab
+        // grab unique event id
         sharedPreferences.setString("EventID", convertData['id']);
         print('\n\nEvent ID: ${sharedPreferences.get('EventID')}\n');
         //createClip();
@@ -42,6 +42,7 @@ class UploadApi {
     }
   }
 
+  // from create event to create clip
   Future<int> createClip(String bodyMessage) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -59,7 +60,7 @@ class UploadApi {
       print('\nbody:' + response.body);
 
       if (convertData != null) {
-        //idk what to do here
+        //testing if retrieved
         sharedPreferences.setString("ClipID", convertData['id']);
         sharedPreferences.setString("videoUrl", convertData['videoUrl']);
         print('\n\nClip ID: ${sharedPreferences.get('ClipID')}\n');
